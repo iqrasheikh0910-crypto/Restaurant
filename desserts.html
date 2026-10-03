@@ -1,0 +1,1959 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SIZZLE — Desserts</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'DM Sans',sans-serif;
+    background:#120d0a;
+    color:#fff4df;
+    overflow-x:hidden;
+}
+
+:root{
+    --dark:#120d0a;
+    --dark2:#1c110c;
+    --orange:#ff6a00;
+    --orange2:#ff3d00;
+    --cream:#fff4df;
+    --muted:#b8aaa1;
+    --border:rgba(255,255,255,.09);
+    --chocolate:#3a1d12;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    position:relative;
+    z-index:1000;
+}
+
+.announcement{
+    background:var(--orange);
+    color:#160c07;
+    text-align:center;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+    padding:9px 15px;
+}
+
+.navbar{
+    min-height:78px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+    background:rgba(18,13,10,.94);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(12px);
+}
+
+.logo{
+    font-family:'Playfair Display',serif;
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:var(--orange);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:27px;
+}
+
+.nav-links a{
+    color:#d7cbc2;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+    color:var(--orange);
+}
+
+.nav-icons{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.nav-icon{
+    width:43px;
+    height:43px;
+    border:1px solid var(--border);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    transition:.3s;
+}
+
+.nav-icon:hover{
+    border-color:var(--orange);
+    color:var(--orange);
+    transform:translateY(-2px);
+}
+
+.nav-icon i{
+    font-size:21px;
+}
+
+.icon-count{
+    position:absolute;
+    top:-5px;
+    right:-3px;
+    min-width:18px;
+    height:18px;
+    padding:0 4px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--orange);
+    color:#fff;
+    font-size:10px;
+    font-weight:800;
+}
+
+.menu-btn{
+    display:none;
+    font-size:29px;
+    cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:620px;
+    padding:80px 7%;
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:50px;
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 80% 40%,rgba(255,106,0,.13),transparent 30%),
+        radial-gradient(circle at 20% 70%,rgba(103,42,18,.25),transparent 32%),
+        linear-gradient(135deg,#120d0a,#21120c);
+}
+
+/* ================= HOT PARTICLES ================= */
+
+.hot-particles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.hot-particles span{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:var(--orange);
+    box-shadow:0 0 12px var(--orange);
+    animation:floatFire linear infinite;
+    opacity:.65;
+}
+
+.hot-particles span:nth-child(1){
+    left:8%;
+    top:75%;
+    animation-duration:5s;
+}
+
+.hot-particles span:nth-child(2){
+    left:18%;
+    top:80%;
+    animation-duration:7s;
+}
+
+.hot-particles span:nth-child(3){
+    left:30%;
+    top:70%;
+    animation-duration:6s;
+}
+
+.hot-particles span:nth-child(4){
+    left:43%;
+    top:78%;
+    animation-duration:8s;
+}
+
+.hot-particles span:nth-child(5){
+    left:55%;
+    top:85%;
+    animation-duration:5s;
+}
+
+.hot-particles span:nth-child(6){
+    left:68%;
+    top:70%;
+    animation-duration:7s;
+}
+
+.hot-particles span:nth-child(7){
+    left:78%;
+    top:80%;
+    animation-duration:6s;
+}
+
+.hot-particles span:nth-child(8){
+    left:89%;
+    top:65%;
+    animation-duration:8s;
+}
+
+@keyframes floatFire{
+
+    0%{
+        transform:translateY(40px) scale(.5);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.8;
+    }
+
+    100%{
+        transform:translateY(-220px) translateX(35px) scale(1.2);
+        opacity:0;
+    }
+}
+
+/* ================= HERO CONTENT ================= */
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--orange);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.eyebrow::before{
+    content:"";
+    width:30px;
+    height:2px;
+    background:var(--orange);
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(48px,6vw,82px);
+    line-height:.98;
+    max-width:700px;
+    margin-bottom:24px;
+}
+
+.hero h1 span{
+    color:var(--orange);
+}
+
+.hero p{
+    color:var(--muted);
+    line-height:1.8;
+    max-width:570px;
+    font-size:16px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.btn{
+    border:0;
+    cursor:pointer;
+    padding:14px 23px;
+    border-radius:5px;
+    font-size:14px;
+    font-weight:800;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:var(--orange);
+    color:#180b06;
+}
+
+.btn-primary:hover{
+    background:#ff8533;
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(255,106,0,.25);
+}
+
+.btn-outline{
+    border:1px solid var(--border);
+    background:transparent;
+    color:var(--cream);
+}
+
+.btn-outline:hover{
+    border-color:var(--orange);
+    color:var(--orange);
+}
+
+/* ================= HERO IMAGE ================= */
+
+.hero-image{
+    position:relative;
+    z-index:2;
+}
+
+.image-frame{
+    position:relative;
+    max-width:600px;
+    margin:auto;
+}
+
+.image-frame img{
+    width:100%;
+    height:470px;
+    object-fit:cover;
+    border-radius:24px;
+    display:block;
+    filter:saturate(1.08);
+    box-shadow:0 30px 70px rgba(0,0,0,.45);
+}
+
+.image-frame::after{
+    content:"";
+    position:absolute;
+    inset:15px;
+    border:1px solid rgba(255,106,0,.3);
+    border-radius:18px;
+    pointer-events:none;
+}
+
+.heat-badge{
+    position:absolute;
+    right:-15px;
+    top:35px;
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    background:var(--orange);
+    color:#160a05;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 45px rgba(255,106,0,.35);
+    animation:pulseBadge 2s infinite;
+}
+
+.heat-badge strong{
+    font-size:25px;
+}
+
+.heat-badge small{
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+@keyframes pulseBadge{
+
+    50%{
+        transform:scale(1.05);
+    }
+
+}
+
+.floating-card{
+    position:absolute;
+    left:-20px;
+    bottom:25px;
+    background:rgba(28,17,12,.95);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:14px 17px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+.floating-card i{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,106,0,.13);
+    color:var(--orange);
+    font-size:21px;
+}
+
+.floating-card strong{
+    display:block;
+    font-size:13px;
+}
+
+.floating-card span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-top:2px;
+}
+
+/* ================= SECTION ================= */
+
+.section{
+    padding:90px 7%;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+    margin-bottom:42px;
+}
+
+.section-heading .eyebrow{
+    margin-bottom:10px;
+}
+
+.section-heading h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(34px,4vw,52px);
+}
+
+.section-heading p{
+    color:var(--muted);
+    max-width:430px;
+    line-height:1.7;
+}
+
+/* ================= PRODUCTS ================= */
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.product-card{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(145deg,#21130d,#170e0a);
+    border:1px solid var(--border);
+    border-radius:18px;
+    transition:.35s;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(255,106,0,.35);
+    box-shadow:0 22px 45px rgba(0,0,0,.28);
+}
+
+.product-image{
+    height:260px;
+    position:relative;
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.5s;
+}
+
+.product-card:hover .product-image img{
+    transform:scale(1.07);
+}
+
+.badge{
+    position:absolute;
+    top:14px;
+    left:14px;
+    padding:7px 10px;
+    border-radius:4px;
+    background:var(--orange);
+    color:#180b06;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.heart-btn{
+    position:absolute;
+    right:14px;
+    top:14px;
+    width:39px;
+    height:39px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:50%;
+    background:rgba(18,13,10,.75);
+    color:white;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+    backdrop-filter:blur(5px);
+}
+
+.heart-btn i{
+    font-size:20px;
+}
+
+.heart-btn:hover,
+.heart-btn.active{
+    color:var(--orange);
+    border-color:var(--orange);
+}
+
+.product-info{
+    padding:21px;
+}
+
+.category{
+    color:var(--orange);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.7px;
+    font-weight:800;
+}
+
+.product-info h3{
+    font-family:'Playfair Display',serif;
+    font-size:23px;
+    margin:7px 0;
+}
+
+.product-info p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    min-height:42px;
+}
+
+.rating{
+    margin:13px 0;
+    color:#ffb347;
+    font-size:13px;
+}
+
+.product-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:17px;
+}
+
+.price{
+    font-size:19px;
+    font-weight:800;
+}
+
+.add-btn{
+    border:0;
+    background:var(--orange);
+    color:#160b06;
+    padding:11px 15px;
+    border-radius:5px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.add-btn:hover{
+    background:#ff8533;
+    transform:translateY(-2px);
+}
+
+/* ================= CHOCOLATE BANNER ================= */
+
+.chocolate-section{
+    padding:0 7% 90px;
+}
+
+.chocolate-box{
+    min-height:350px;
+    border-radius:24px;
+    overflow:hidden;
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    padding:55px;
+
+    background:
+        radial-gradient(circle at 80% 50%,rgba(255,106,0,.18),transparent 30%),
+        linear-gradient(125deg,#30180e,#180c08);
+
+    border:1px solid var(--border);
+}
+
+.chocolate-content{
+    position:relative;
+    z-index:3;
+}
+
+.chocolate-content h2{
+    font-family:'Playfair Display',serif;
+    font-size:44px;
+    margin-bottom:13px;
+}
+
+.chocolate-content p{
+    color:var(--muted);
+    line-height:1.7;
+    max-width:500px;
+}
+
+.dessert-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:22px;
+}
+
+.dessert-tags span{
+    border:1px solid rgba(255,106,0,.3);
+    color:#ffd7bc;
+    padding:8px 12px;
+    border-radius:30px;
+    font-size:12px;
+}
+
+/* ================= CHOCOLATE VISUAL ================= */
+
+.chocolate-visual{
+    height:230px;
+    position:relative;
+}
+
+.chocolate-circle{
+    position:absolute;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    right:18%;
+    top:15px;
+
+    background:
+        radial-gradient(circle at 35% 30%,#7c4227,#421f13 55%,#241008);
+
+    box-shadow:
+        0 25px 55px rgba(0,0,0,.5),
+        0 0 45px rgba(255,106,0,.12);
+}
+
+.chocolate-circle::before{
+    content:"";
+    position:absolute;
+    width:145px;
+    height:145px;
+    border-radius:50%;
+    left:23px;
+    top:22px;
+    border:2px solid rgba(255,194,130,.15);
+}
+
+.chocolate-drip{
+    position:absolute;
+    width:25px;
+    height:90px;
+    background:linear-gradient(#7b3c20,#3d170d);
+    border-radius:0 0 20px 20px;
+    right:40%;
+    top:100px;
+    animation:chocoDrip 2.8s ease-in-out infinite;
+}
+
+.chocolate-drip:nth-child(2){
+    width:19px;
+    height:65px;
+    right:34%;
+    animation-delay:.5s;
+}
+
+.chocolate-drip:nth-child(3){
+    width:29px;
+    height:78px;
+    right:27%;
+    animation-delay:1s;
+}
+
+@keyframes chocoDrip{
+
+    0%,100%{
+        transform:scaleY(.7);
+        transform-origin:top;
+    }
+
+    50%{
+        transform:scaleY(1);
+        transform-origin:top;
+    }
+
+}
+
+/* ================= CTA ================= */
+
+.cta{
+    padding:0 7% 90px;
+}
+
+.cta-box{
+    padding:55px;
+    text-align:center;
+    border-radius:22px;
+    background:var(--orange);
+    color:#180b06;
+    position:relative;
+    overflow:hidden;
+}
+
+.cta-box h2{
+    font-family:'Playfair Display',serif;
+    font-size:44px;
+    margin-bottom:10px;
+}
+
+.cta-box p{
+    max-width:600px;
+    margin:0 auto 24px;
+    line-height:1.6;
+}
+
+.cta-box .btn{
+    background:#180b06;
+    color:#fff4df;
+}
+
+.cta-box .btn:hover{
+    transform:translateY(-3px);
+    background:#000;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:60px 7% 25px;
+    background:#0d0806;
+    border-top:1px solid var(--border);
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:45px;
+}
+
+.footer-brand p{
+    color:var(--muted);
+    max-width:320px;
+    line-height:1.7;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.footer-col h4{
+    margin-bottom:17px;
+    font-size:14px;
+}
+
+.footer-col a{
+    display:block;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:11px;
+    transition:.3s;
+}
+
+.footer-col a:hover{
+    color:var(--orange);
+    padding-left:4px;
+}
+
+.footer-bottom{
+    border-top:1px solid var(--border);
+    margin-top:45px;
+    padding-top:22px;
+    text-align:center;
+    color:#766b64;
+    font-size:12px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:2000;
+    padding:14px 19px;
+    border-radius:8px;
+    background:#24150e;
+    border:1px solid rgba(255,106,0,.4);
+    color:var(--cream);
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+    transform:translateY(100px);
+    opacity:0;
+    transition:.35s;
+    font-size:13px;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px){
+
+    .nav-links{
+        position:absolute;
+        top:78px;
+        left:0;
+        width:100%;
+        background:#160d09;
+        border-bottom:1px solid var(--border);
+        display:none;
+        flex-direction:column;
+        padding:25px;
+    }
+
+    .nav-links.show{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:60px;
+    }
+
+    .hero-content{
+        text-align:center;
+    }
+
+    .hero p{
+        margin:auto;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-image{
+        max-width:650px;
+        width:100%;
+        margin:auto;
+    }
+
+    .product-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .chocolate-box{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .navbar{
+        padding:0 5%;
+    }
+
+    .logo{
+        font-size:27px;
+    }
+
+    .nav-icons{
+        margin-left:auto;
+    }
+
+    .nav-icon{
+        width:39px;
+        height:39px;
+    }
+
+    .hero{
+        min-height:auto;
+        padding:65px 5% 70px;
+    }
+
+    .hero h1{
+        font-size:46px;
+    }
+
+    .image-frame img{
+        height:330px;
+    }
+
+    .heat-badge{
+        right:-5px;
+        top:15px;
+        width:85px;
+        height:85px;
+    }
+
+    .heat-badge strong{
+        font-size:20px;
+    }
+
+    .floating-card{
+        left:8px;
+        bottom:12px;
+    }
+
+    .section{
+        padding:65px 5%;
+    }
+
+    .section-heading{
+        display:block;
+    }
+
+    .section-heading p{
+        margin-top:12px;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .product-image{
+        height:270px;
+    }
+
+    .chocolate-section,
+    .cta{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .chocolate-box{
+        padding:35px 25px;
+    }
+
+    .chocolate-content h2{
+        font-size:35px;
+    }
+
+    .chocolate-visual{
+        height:190px;
+    }
+
+    .chocolate-circle{
+        right:24%;
+    }
+
+    .cta-box{
+        padding:40px 22px;
+    }
+
+    .cta-box h2{
+        font-size:35px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+    footer{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="announcement">
+        🍫 SWEET • WARM • MELTY • IRRESISTIBLE 🍰
+    </div>
+
+    <div class="navbar">
+
+        <a href="index.html" class="logo">
+            SIZZLE<span>.</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="menu.html">
+                Menu
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a href="deals.html">
+                Deals
+            </a>
+
+            <a href="videos.html">
+                Food Videos
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="nav-icons">
+
+            <a href="wishlist.html" class="nav-icon">
+
+                <i class='bx bx-heart'></i>
+
+                <span
+                    class="icon-count"
+                    id="wishlistCount"
+                >
+                    0
+                </span>
+
+            </a>
+
+
+            <a href="cart.html" class="nav-icon">
+
+                <i class='bx bx-shopping-bag'></i>
+
+                <span
+                    class="icon-count"
+                    id="cartCount"
+                >
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <i
+            class='bx bx-menu menu-btn'
+            id="menuBtn"
+        ></i>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hot-particles">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            SWEET SIDE OF SIZZLE
+        </div>
+
+
+        <h1>
+            Save Room For
+            <span>Something Sweet.</span>
+        </h1>
+
+
+        <p>
+            Warm chocolate, creamy cheesecake, crispy waffles
+            and desserts made for those moments when one more
+            bite somehow becomes five.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#dessertMenu"
+                class="btn btn-primary"
+            >
+                Explore Desserts
+            </a>
+
+
+            <a
+                href="menu.html"
+                class="btn btn-outline"
+            >
+                View Full Menu
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <div class="image-frame">
+
+            <img
+                src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1000&q=90"
+                alt="Chocolate lava cake"
+                onerror="this.src='https://placehold.co/1000x700/24140d/fff4df?text=SIZZLE+DESSERTS';"
+            >
+
+
+            <div class="heat-badge">
+
+                <strong>🍫 5/5</strong>
+
+                <small>
+                    SWEET
+                </small>
+
+            </div>
+
+
+            <div class="floating-card">
+
+                <i class='bx bx-cake'></i>
+
+                <div>
+
+                    <strong>
+                        Freshly Made
+                    </strong>
+
+                    <span>
+                        Warm • Gooey • Sweet
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DESSERT MENU ================= -->
+
+<section
+    class="section"
+    id="dessertMenu"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                DESSERT MENU
+            </div>
+
+            <h2>
+                Sweet Cravings
+            </h2>
+
+        </div>
+
+
+        <p>
+            End your SIZZLE meal with something warm,
+            creamy, chocolatey and completely addictive.
+        </p>
+
+    </div>
+
+
+    <div
+        class="product-grid"
+        id="productGrid"
+    ></div>
+
+</section>
+
+
+<!-- ================= CHOCOLATE SECTION ================= -->
+
+<section class="chocolate-section">
+
+    <div class="chocolate-box">
+
+        <div class="chocolate-content">
+
+            <div class="eyebrow">
+                CHOCOLATE LOVERS
+            </div>
+
+
+            <h2>
+                Pour It. Melt It.
+                Love It.
+            </h2>
+
+
+            <p>
+                Our desserts are made to be messy.
+                Warm chocolate, gooey centers and creamy toppings
+                are exactly how dessert should be.
+            </p>
+
+
+            <div class="dessert-tags">
+
+                <span>🍫 Dark Chocolate</span>
+                <span>🍓 Fresh Berries</span>
+                <span>🍦 Vanilla Cream</span>
+                <span>🥜 Nutella</span>
+                <span>🧀 Cheesecake</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="chocolate-visual">
+
+            <div class="chocolate-circle"></div>
+
+            <div class="chocolate-drip"></div>
+            <div class="chocolate-drip"></div>
+            <div class="chocolate-drip"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <div class="cta-box">
+
+        <h2>
+            One Last Bite? 🍫
+        </h2>
+
+
+        <p>
+            Add your favorite dessert to the cart and turn
+            an ordinary meal into a full SIZZLE experience.
+        </p>
+
+
+        <a
+            href="cart.html"
+            class="btn"
+        >
+            View My Cart
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                SIZZLE<span>.</span>
+            </a>
+
+
+            <p>
+                Hot. Crispy. Irresistible.
+                And yes — we make room for dessert.
+            </p>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h4>
+                Explore
+            </h4>
+
+            <a href="menu.html">
+                Full Menu
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a href="deals.html">
+                Deals
+            </a>
+
+            <a href="videos.html">
+                Food Videos
+            </a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h4>
+                Categories
+            </h4>
+
+            <a href="zinger.html">
+                Zinger
+            </a>
+
+            <a href="burgers.html">
+                Burgers
+            </a>
+
+            <a href="pizza.html">
+                Pizza
+            </a>
+
+            <a href="loaded-fries.html">
+                Loaded Fries
+            </a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h4>
+                More SIZZLE
+            </h4>
+
+            <a href="wings.html">
+                Wings
+            </a>
+
+            <a href="pasta.html">
+                Pasta
+            </a>
+
+            <a href="desserts.html">
+                Desserts
+            </a>
+
+            <a href="drinks.html">
+                Drinks
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 SIZZLE. All rights reserved.
+        • Save room for dessert.
+
+    </div>
+
+</footer>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Added to cart 🍫
+</div>
+
+
+<script>
+
+/* ================= DESSERT PRODUCTS ================= */
+
+const products = [
+
+    {
+        id:"lava-cake",
+        name:"Chocolate Lava Cake",
+        price:499,
+        category:"Desserts",
+        badge:"BESTSELLER",
+        rating:5,
+        description:"Warm chocolate cake with a molten chocolate center.",
+        image:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=90"
+    },
+
+
+    {
+        id:"brownie-blast",
+        name:"Fudge Brownie Blast",
+        price:449,
+        category:"Desserts",
+        badge:"CHOCOLATE",
+        rating:5,
+        description:"Rich fudgy brownie served warm with chocolate drizzle.",
+        image:"https://images.unsplash.com/photo-1564355808539-22fda35bed7e?auto=format&fit=crop&w=900&q=90"
+    },
+
+
+    {
+        id:"cheesecake",
+        name:"Classic Cheesecake",
+        price:599,
+        category:"Desserts",
+        badge:"CREAMY",
+        rating:5,
+        description:"Smooth creamy cheesecake with a buttery biscuit base.",
+        image:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=90"
+    },
+
+
+    {
+        id:"chocolate-waffles",
+        name:"Chocolate Waffle Stack",
+        price:549,
+        category:"Desserts",
+        badge:"POPULAR",
+        rating:5,
+        description:"Crispy waffles layered with chocolate sauce and cream.",
+        image:"https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=900&q=90"
+    },
+
+
+    {
+        id:"brownie-sundae",
+        name:"Brownie Sundae",
+        price:649,
+        category:"Desserts",
+        badge:"LOADED",
+        rating:5,
+        description:"Warm brownie, vanilla ice cream, chocolate sauce and nuts.",
+        image:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=900&q=90"
+    },
+
+
+    {
+        id:"cookie-skillet",
+        name:"Chocolate Cookie Skillet",
+        price:699,
+        category:"Desserts",
+        badge:"NEW",
+        rating:5,
+        description:"Warm giant cookie baked in a skillet with melted chocolate.",
+        image:"https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=90"
+    }
+
+];
+
+
+/* ================= STORAGE ================= */
+
+function getCart(){
+
+    return JSON.parse(
+        localStorage.getItem("sizzleCart")
+    ) || [];
+
+}
+
+
+function getWishlist(){
+
+    return JSON.parse(
+        localStorage.getItem("sizzleWishlist")
+    ) || [];
+
+}
+
+
+/* ================= UPDATE COUNTS ================= */
+
+function updateCounts(){
+
+    const cart = getCart();
+    const wishlist = getWishlist();
+
+    let cartTotal = 0;
+
+    cart.forEach(item => {
+
+        cartTotal += Number(
+            item.quantity || 1
+        );
+
+    });
+
+
+    document.getElementById(
+        "cartCount"
+    ).textContent = cartTotal;
+
+
+    document.getElementById(
+        "wishlistCount"
+    ).textContent = wishlist.length;
+
+}
+
+
+/* ================= TOAST ================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },2200);
+
+}
+
+
+/* ================= ADD TO CART ================= */
+
+function addToCart(index,button){
+
+    const product =
+        products[index];
+
+    let cart =
+        getCart();
+
+
+    const existing =
+        cart.find(
+            item => item.id === product.id
+        );
+
+
+    if(existing){
+
+        existing.quantity =
+            Number(existing.quantity || 1) + 1;
+
+    }else{
+
+        cart.push({
+
+            id:product.id,
+
+            name:product.name,
+
+            price:product.price,
+
+            category:product.category,
+
+            image:product.image,
+
+            quantity:1
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "sizzleCart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCounts();
+
+
+    const oldText =
+        button.textContent;
+
+
+    button.textContent =
+        "Added ✓";
+
+
+    setTimeout(() => {
+
+        button.textContent =
+            oldText;
+
+    },1000);
+
+
+    showToast(
+        product.name +
+        " added to cart 🍫"
+    );
+
+}
+
+
+/* ================= WISHLIST ================= */
+
+function toggleWishlist(index,button){
+
+    const product =
+        products[index];
+
+    let wishlist =
+        getWishlist();
+
+
+    const existingIndex =
+        wishlist.findIndex(
+            item => item.id === product.id
+        );
+
+
+    if(existingIndex !== -1){
+
+        wishlist.splice(
+            existingIndex,
+            1
+        );
+
+        button.classList.remove(
+            "active"
+        );
+
+        button.innerHTML =
+            "<i class='bx bx-heart'></i>";
+
+        showToast(
+            "Removed from wishlist"
+        );
+
+    }else{
+
+        wishlist.push({
+
+            id:product.id,
+
+            name:product.name,
+
+            price:product.price,
+
+            category:product.category,
+
+            image:product.image
+
+        });
+
+
+        button.classList.add(
+            "active"
+        );
+
+        button.innerHTML =
+            "<i class='bx bxs-heart'></i>";
+
+        showToast(
+            "Added to wishlist ❤️"
+        );
+
+    }
+
+
+    localStorage.setItem(
+        "sizzleWishlist",
+        JSON.stringify(wishlist)
+    );
+
+
+    updateCounts();
+
+}
+
+
+/* ================= PRODUCT DETAILS ================= */
+
+function openProduct(index){
+
+    const product =
+        products[index];
+
+
+    localStorage.setItem(
+        "sizzleSelectedProduct",
+        JSON.stringify(product)
+    );
+
+
+    window.location.href =
+        "product-details.html?product=" +
+        encodeURIComponent(product.id);
+
+}
+
+
+/* ================= RENDER PRODUCTS ================= */
+
+function renderProducts(){
+
+    const grid =
+        document.getElementById(
+            "productGrid"
+        );
+
+
+    const wishlist =
+        getWishlist();
+
+
+    grid.innerHTML = "";
+
+
+    products.forEach(
+        (product,index) => {
+
+
+            const isLiked =
+                wishlist.some(
+                    item =>
+                        item.id === product.id
+                );
+
+
+            grid.innerHTML += `
+
+                <article class="product-card">
+
+                    <div class="product-image">
+
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            onerror="this.src='https://placehold.co/900x650/24140d/fff4df?text=SIZZLE+DESSERT';"
+                        >
+
+
+                        <span class="badge">
+                            ${product.badge}
+                        </span>
+
+
+                        <button
+                            class="heart-btn ${isLiked ? "active" : ""}"
+                            onclick="toggleWishlist(${index},this)"
+                            aria-label="Add to wishlist"
+                        >
+
+                            <i class='bx ${isLiked ? "bxs-heart" : "bx-heart"}'></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="product-info">
+
+                        <span class="category">
+                            ${product.category}
+                        </span>
+
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+
+                        <p>
+                            ${product.description}
+                        </p>
+
+
+                        <div class="rating">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                PKR ${product.price.toLocaleString()}
+                            </span>
+
+
+                            <button
+                                class="add-btn"
+                                onclick="addToCart(${index},this)"
+                            >
+                                Add to Cart
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* ================= MOBILE MENU ================= */
+
+const menuBtn =
+    document.getElementById(
+        "menuBtn"
+    );
+
+
+const navLinks =
+    document.getElementById(
+        "navLinks"
+    );
+
+
+menuBtn.addEventListener(
+    "click",
+    () => {
+
+        navLinks.classList.toggle(
+            "show"
+        );
+
+        menuBtn.classList.toggle(
+            "bx-x"
+        );
+
+    }
+);
+
+
+/* ================= INITIALIZE ================= */
+
+renderProducts();
+updateCounts();
+
+</script>
+
+</body>
+</html>
+

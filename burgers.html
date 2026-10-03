@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Burgers | SIZZLE.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet">
+
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+<style>
+
+    :root {
+        --dark: #120d0a;
+        --dark2: #1b100c;
+        --dark3: #28160f;
+        --orange: #ff6a00;
+        --orange2: #ff3d00;
+        --cream: #fff4df;
+        --muted: #b8aaa1;
+        --border: rgba(255,255,255,.09);
+        --shadow: 0 25px 70px rgba(0,0,0,.38);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 120px;
+    }
+
+    body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--dark);
+        color: var(--cream);
+        overflow-x: hidden;
+        padding-top: 123px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    button {
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+
+    /* ================= HEADER ================= */
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(18,13,10,.93);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(255,255,255,.06);
+        box-shadow: 0 8px 35px rgba(0,0,0,.2);
+    }
+
+    .announcement {
+        background: var(--orange);
+        color: #160b05;
+        text-align: center;
+        padding: 9px 15px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .navbar {
+        position: relative;
+        width: min(1180px,92%);
+        min-height: 82px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .navbar::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 0;
+        height: 1px;
+        background: var(--orange);
+        box-shadow: 0 0 15px var(--orange);
+        transition: .5s;
+    }
+
+    header:hover .navbar::after {
+        width: 100%;
+    }
+
+    .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        transition: .3s;
+    }
+
+    .logo span {
+        color: var(--orange);
+    }
+
+    .logo:hover {
+        transform: translateY(-2px);
+    }
+
+
+    /* ================= NAVIGATION ================= */
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 27px;
+    }
+
+    .nav-links a {
+        position: relative;
+        color: #d8ccc4;
+        font-size: 14px;
+        font-weight: 600;
+        transition: .3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: #fff;
+    }
+
+    .nav-links a::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -9px;
+        width: 0;
+        height: 2px;
+        border-radius: 20px;
+        background: var(--orange);
+        transform: translateX(-50%);
+        transition: .3s;
+    }
+
+    .nav-links a:hover::before,
+    .nav-links a.active::before {
+        width: 100%;
+    }
+
+
+    /* ================= NAV ICONS ================= */
+
+    .nav-icons {
+        display: flex;
+        gap: 12px;
+    }
+
+    .nav-icon {
+        position: relative;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255,255,255,.02);
+        transition: .35s;
+    }
+
+    .nav-icon:hover {
+        background: var(--orange);
+        border-color: var(--orange);
+        transform: translateY(-3px) scale(1.04);
+        box-shadow: 0 8px 25px rgba(255,106,0,.25);
+    }
+
+    .nav-icon i {
+        font-size: 21px;
+    }
+
+    .icon-count {
+        position: absolute;
+        top: -5px;
+        right: -3px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 4px;
+        border-radius: 20px;
+        display: grid;
+        place-items: center;
+        background: var(--orange);
+        color: #fff;
+        border: 2px solid var(--dark);
+        font-size: 10px;
+        font-weight: 800;
+        transition: .3s;
+    }
+
+    .nav-icon:hover .icon-count {
+        background: #fff;
+        color: var(--orange);
+    }
+
+    .menu-btn {
+        display: none;
+        font-size: 30px;
+        transition: .3s;
+    }
+
+    .menu-btn:hover {
+        color: var(--orange);
+    }
+
+
+    /* ================= HERO ================= */
+
+    .hero {
+        position: relative;
+        min-height: 510px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+
+        background:
+            radial-gradient(
+                circle at 75% 45%,
+                rgba(255,70,0,.2),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 10% 90%,
+                rgba(255,106,0,.08),
+                transparent 30%
+            ),
+            var(--dark);
+    }
+
+    .hero-content {
+        width: min(1180px,92%);
+        margin: auto;
+        position: relative;
+        z-index: 5;
+        padding-right: 500px;
+        animation: heroIn .9s ease both;
+    }
+
+    @keyframes heroIn {
+
+        from {
+            opacity: 0;
+            transform: translateY(25px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    }
+
+    .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--orange);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 11px;
+        font-weight: 800;
+        margin-bottom: 17px;
+    }
+
+    .eyebrow::before {
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: var(--orange);
+        box-shadow: 0 0 10px rgba(255,106,0,.5);
+    }
+
+    .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(55px,7vw,84px);
+        line-height: .95;
+        letter-spacing: -3px;
+        margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+        color: var(--orange);
+        font-style: italic;
+    }
+
+    .hero p {
+        max-width: 530px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+
+    /* ================= HERO IMAGE ================= */
+
+    .hero-image {
+        position: absolute;
+        right: 6%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 410px;
+        height: 410px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        border: 2px solid rgba(255,106,0,.2);
+
+        box-shadow:
+            0 0 0 15px rgba(255,106,0,.025),
+            0 0 90px rgba(255,70,0,.2);
+
+        animation:
+            heroImageIn 1s ease both,
+            heroFloat 5s ease-in-out infinite;
+
+        z-index: 3;
+    }
+
+    .hero-image::before {
+        content: "";
+        position: absolute;
+        inset: -14px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,106,0,.28);
+        animation: ring 3s ease-in-out infinite;
+        z-index: 3;
+    }
+
+    .hero-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0,0,0,.02),
+                rgba(18,13,10,.5)
+            );
+        pointer-events: none;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 1s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .hero-image:hover img {
+        transform: scale(1.1);
+    }
+
+    @keyframes heroImageIn {
+
+        from {
+            opacity: 0;
+            transform: translateY(-50%) translateX(50px) scale(.85);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0) scale(1);
+        }
+
+    }
+
+    @keyframes heroFloat {
+
+        0%,100% {
+            margin-top: 0;
+        }
+
+        50% {
+            margin-top: -10px;
+        }
+
+    }
+
+    @keyframes ring {
+
+        0%,100% {
+            transform: scale(1);
+            opacity: .3;
+        }
+
+        50% {
+            transform: scale(1.04);
+            opacity: .8;
+        }
+
+    }
+
+
+    /* ================= HERO BADGE ================= */
+
+    .hero-badge {
+        position: absolute;
+        left: 28px;
+        bottom: 28px;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 15px;
+        border-radius: 30px;
+        background: rgba(18,13,10,.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,106,0,.25);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .hero-badge i {
+        color: var(--orange);
+        font-size: 17px;
+    }
+
+
+    /* ================= PRODUCTS ================= */
+
+    .products-section {
+        padding: 95px 0 110px;
+        background: #170e0a;
+    }
+
+    .container {
+        width: min(1180px,92%);
+        margin: auto;
+    }
+
+    .section-heading {
+        text-align: center;
+        max-width: 680px;
+        margin: 0 auto 55px;
+    }
+
+    .section-heading .eyebrow {
+        justify-content: center;
+    }
+
+    .section-heading h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 46px;
+        line-height: 1.05;
+        margin-bottom: 14px;
+    }
+
+    .section-heading h2 span {
+        color: var(--orange);
+    }
+
+    .section-heading p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+
+    /* ================= BURGER GRID ================= */
+
+    .burger-grid {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 24px;
+    }
+
+    .burger-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: linear-gradient(
+            145deg,
+            #21130e,
+            #160d09
+        );
+        transition:
+            transform .45s cubic-bezier(.2,.8,.2,1),
+            border-color .4s,
+            box-shadow .4s;
+    }
+
+    .burger-card:hover {
+        transform: translateY(-9px);
+        border-color: rgba(255,106,0,.45);
+        box-shadow: var(--shadow);
+    }
+
+
+    /* ================= PRODUCT IMAGE ================= */
+
+    .burger-image {
+        position: relative;
+        height: 285px;
+        overflow: hidden;
+    }
+
+    .burger-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(
+                180deg,
+                transparent 55%,
+                rgba(18,13,10,.75)
+            );
+        pointer-events: none;
+    }
+
+    .burger-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: .8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .burger-card:hover .burger-image img {
+        transform: scale(1.09);
+    }
+
+
+    /* ================= BADGES ================= */
+
+    .product-badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        z-index: 4;
+        padding: 7px 11px;
+        border-radius: 20px;
+        background: var(--orange);
+        color: #160b05;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .product-badge.hot {
+        background: #fff;
+        color: #160b05;
+    }
+
+    .wishlist-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 5;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,.15);
+        background: rgba(18,13,10,.7);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        backdrop-filter: blur(10px);
+        transition: .35s;
+    }
+
+    .wishlist-btn:hover {
+        background: var(--orange);
+        border-color: var(--orange);
+        transform: scale(1.08);
+    }
+
+    .wishlist-btn.active {
+        background: var(--orange);
+        border-color: var(--orange);
+    }
+
+    .wishlist-btn i {
+        font-size: 21px;
+    }
+
+
+    /* ================= PRODUCT INFO ================= */
+
+    .burger-info {
+        padding: 22px 22px 24px;
+    }
+
+    .burger-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .burger-info h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 25px;
+        margin-bottom: 7px;
+    }
+
+    .burger-info p {
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.65;
+        min-height: 38px;
+    }
+
+    .price {
+        color: var(--orange);
+        font-size: 17px;
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
+
+    /* ================= RATING ================= */
+
+    .rating {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        margin: 14px 0 18px;
+    }
+
+    .rating i {
+        color: var(--orange);
+        font-size: 14px;
+    }
+
+    .rating span {
+        margin-left: 5px;
+        color: #806f65;
+        font-size: 10px;
+    }
+
+
+    /* ================= CARD ACTION ================= */
+
+    .card-actions {
+        display: grid;
+        grid-template-columns: 1fr 48px;
+        gap: 9px;
+    }
+
+    .add-btn {
+        border: 0;
+        border-radius: 9px;
+        background: var(--orange);
+        color: #fff;
+        padding: 13px 14px;
+        font-size: 11px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        transition: .3s;
+    }
+
+    .add-btn:hover {
+        background: var(--orange2);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255,61,0,.22);
+    }
+
+    .add-btn i {
+        font-size: 17px;
+    }
+
+    .quick-view {
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        background: transparent;
+        color: #fff;
+        display: grid;
+        place-items: center;
+        transition: .3s;
+    }
+
+    .quick-view:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+        transform: translateY(-2px);
+    }
+
+    .quick-view i {
+        font-size: 19px;
+    }
+
+
+    /* ================= PROMO ================= */
+
+    .promo {
+        padding: 0 0 110px;
+        background: #170e0a;
+    }
+
+    .promo-box {
+        position: relative;
+        overflow: hidden;
+        min-height: 300px;
+        border-radius: 25px;
+        border: 1px solid var(--border);
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(17,10,7,.98) 18%,
+                rgba(17,10,7,.76) 55%,
+                rgba(17,10,7,.22)
+            ),
+            url("https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1500&q=90")
+            center/cover;
+
+        display: flex;
+        align-items: center;
+        padding: 50px;
+        transition: .4s;
+    }
+
+    .promo-box:hover {
+        border-color: rgba(255,106,0,.4);
+        box-shadow: var(--shadow);
+    }
+
+    .promo-content {
+        max-width: 570px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .promo-content h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 43px;
+        line-height: 1;
+        margin-bottom: 15px;
+    }
+
+    .promo-content h2 span {
+        color: var(--orange);
+    }
+
+    .promo-content p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 23px;
+    }
+
+    .primary-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--orange);
+        color: #fff;
+        padding: 14px 22px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 800;
+        transition: .3s;
+    }
+
+    .primary-btn:hover {
+        background: var(--orange2);
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(255,61,0,.25);
+    }
+
+    .primary-btn i {
+        transition: .3s;
+    }
+
+    .primary-btn:hover i {
+        transform: translateX(4px);
+    }
+
+
+    /* ================= TOAST ================= */
+
+    .toast {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        z-index: 9999;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        background: var(--cream);
+        color: #1a0e09;
+
+        padding: 13px 18px;
+        border-radius: 11px;
+
+        box-shadow: 0 15px 40px rgba(0,0,0,.35);
+
+        font-size: 12px;
+        font-weight: 800;
+
+        transform: translateY(100px);
+        opacity: 0;
+        pointer-events: none;
+
+        transition: .4s;
+    }
+
+    .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .toast i {
+        color: var(--orange);
+        font-size: 20px;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background: #0d0907;
+        border-top: 1px solid var(--border);
+        padding: 65px 0 25px;
+    }
+
+    .footer-grid {
+        width: min(1180px,92%);
+        margin: auto;
+
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 50px;
+
+        padding-bottom: 50px;
+    }
+
+    .footer-brand .logo {
+        display: inline-block;
+        margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+        max-width: 300px;
+        color: #8e7c72;
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    .footer-title {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 18px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+    }
+
+    .footer-links a {
+        color: #87766d;
+        font-size: 12px;
+        transition: .3s;
+    }
+
+    .footer-links a:hover {
+        color: var(--orange);
+        transform: translateX(4px);
+    }
+
+    .socials {
+        display: flex;
+        gap: 9px;
+    }
+
+    .socials a {
+        width: 33px;
+        height: 33px;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        transition: .3s;
+    }
+
+    .socials a:hover {
+        background: var(--orange);
+        border-color: var(--orange);
+        transform: translateY(-3px);
+    }
+
+    .socials i {
+        font-size: 16px;
+    }
+
+    .footer-bottom {
+        width: min(1180px,92%);
+        margin: auto;
+
+        padding-top: 23px;
+        border-top: 1px solid var(--border);
+
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        color: #66564e;
+        font-size: 10px;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:1050px) {
+
+        .nav-links {
+            gap: 15px;
+        }
+
+        .hero-content {
+            padding-right: 360px;
+        }
+
+        .hero-image {
+            width: 320px;
+            height: 320px;
+            right: 5%;
+        }
+
+        .burger-grid {
+            grid-template-columns: repeat(2,1fr);
+        }
+
+    }
+
+
+    @media(max-width:800px) {
+
+        body {
+            padding-top: 105px;
+        }
+
+        .menu-btn {
+            display: block;
+        }
+
+        .nav-icons {
+            margin-left: auto;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+
+            padding: 22px 5%;
+
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+
+            gap: 18px;
+
+            background: rgba(19,12,9,.98);
+            backdrop-filter: blur(18px);
+
+            border-top: 1px solid var(--border);
+
+            box-shadow: 0 20px 40px rgba(0,0,0,.3);
+        }
+
+        .nav-links.show {
+            display: flex;
+            animation: mobileNav .3s ease both;
+        }
+
+        @keyframes mobileNav {
+
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .hero {
+            min-height: 560px;
+        }
+
+        .hero-content {
+            padding-right: 0;
+            z-index: 6;
+        }
+
+        .hero-image {
+            width: 330px;
+            height: 330px;
+            right: 50%;
+            top: 62%;
+            transform: translate(50%,-50%);
+            opacity: .23;
+        }
+
+        .burger-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .promo-box {
+            padding: 35px 25px;
+            min-height: 330px;
+        }
+
+        .footer-grid {
+            grid-template-columns: repeat(2,1fr);
+        }
+
+    }
+
+
+    @media(max-width:560px) {
+
+        .announcement {
+            font-size: 8px;
+            letter-spacing: 1px;
+            padding: 8px 10px;
+        }
+
+        body {
+            padding-top: 100px;
+        }
+
+        .navbar {
+            min-height: 70px;
+        }
+
+        .logo {
+            font-size: 27px;
+        }
+
+        .nav-icon {
+            width: 38px;
+            height: 38px;
+        }
+
+        .hero {
+            min-height: 520px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 13px;
+        }
+
+        .hero-image {
+            width: 270px;
+            height: 270px;
+            top: 65%;
+            opacity: .18;
+        }
+
+        .products-section {
+            padding: 70px 0 80px;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+        }
+
+        .section-heading h2 {
+            font-size: 36px;
+        }
+
+        .burger-image {
+            height: 250px;
+        }
+
+        .promo-content h2 {
+            font-size: 35px;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 35px 20px;
+        }
+
+        .footer-brand {
+            grid-column: 1/-1;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+    }
+
+
+    @media(max-width:380px) {
+
+        .nav-icons {
+            gap: 5px;
+        }
+
+        .nav-icon {
+            width: 35px;
+            height: 35px;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+        }
+
+        .hero-image {
+            width: 235px;
+            height: 235px;
+        }
+
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="announcement">
+        🔥 FRESH • CRISPY • LOADED • DELIVERED HOT 🔥
+    </div>
+
+    <div class="navbar">
+
+        <a href="./index.html" class="logo">
+            SIZZLE<span>.</span>
+        </a>
+
+
+        <nav class="nav-links" id="navLinks">
+
+            <a href="./index.html">
+                Home
+            </a>
+
+            <a href="./about.html">
+                About
+            </a>
+
+            <a href="./menu.html">
+                Menu
+            </a>
+
+            <a href="./categories.html">
+                Categories
+            </a>
+
+            <a href="./deals.html">
+                Deals
+            </a>
+
+            <a href="./videos.html">
+                Food Videos
+            </a>
+
+            <a href="./contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="nav-icons">
+
+            <a href="./wishlist.html"
+                class="nav-icon"
+                aria-label="Wishlist">
+
+                <i class="bx bx-heart"></i>
+
+                <span
+                    class="icon-count"
+                    id="wishlistCount">
+                    0
+                </span>
+
+            </a>
+
+
+            <a href="./cart.html"
+                class="nav-icon"
+                aria-label="Shopping Cart">
+
+                <i class="bx bx-shopping-bag"></i>
+
+                <span
+                    class="icon-count"
+                    id="cartCount">
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <i
+            class="bx bx-menu menu-btn"
+            id="menuBtn"
+            role="button"
+            tabindex="0"
+            aria-label="Open Menu">
+        </i>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            SIZZLE BURGERS
+        </div>
+
+        <h1>
+            Built for<br>
+            <span>big cravings.</span>
+        </h1>
+
+        <p>
+            Juicy patties, crispy chicken, melted cheese,
+            fresh toppings and sauces stacked exactly
+            the way a serious burger should be.
+        </p>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+                                  src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=90"
+            alt="Delicious SIZZLE burger">
+
+        <div class="hero-badge">
+
+            <i class="bx bx-bowl-hot"></i>
+
+            <span>
+                MADE FOR SERIOUS CRAVINGS
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= BURGERS ================= -->
+
+<section class="products-section">
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                THE BURGER LINEUP
+            </div>
+
+            <h2>
+                Pick Your <span>Stack.</span>
+            </h2>
+
+            <p>
+                Every burger is loaded fresh,
+                packed with flavor and made to
+                disappear fast.
+            </p>
+
+        </div>
+
+
+        <div class="burger-grid">
+
+
+            <!-- BURGER 01 -->
+
+            <article class="burger-card"
+                data-id="burger-01"
+                data-name="Classic Sizzle"
+                data-price="699"
+                data-image="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=90">
+
+                <div class="burger-image">
+
+                    <span class="product-badge">
+                        BESTSELLER
+                    </span>
+
+                    <button
+                        class="wishlist-btn"
+                        type="button"
+                        aria-label="Add Classic Sizzle to wishlist">
+
+                        <i class="bx bx-heart"></i>
+
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=90"
+                        alt="Classic Sizzle Burger"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="burger-info">
+
+                    <div class="burger-top">
+
+                        <div>
+
+                            <h3>
+                                Classic Sizzle
+                            </h3>
+
+                            <p>
+                                Juicy beef patty, cheddar,
+                                lettuce, tomato and house sauce.
+                            </p>
+
+                        </div>
+
+                        <div class="price">
+                            Rs. 699
+                        </div>
+
+                    </div>
+
+
+                    <div class="rating">
+
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+
+                        <span>
+                            4.9
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <button
+                            class="add-btn"
+                            type="button">
+
+                            <i class="bx bx-shopping-bag"></i>
+
+                            Add to Cart
+
+                        </button>
+
+                        <button
+                            class="quick-view"
+                            type="button"
+                            aria-label="Quick view">
+
+                            <i class="bx bx-show"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- BURGER 02 -->
+
+            <article class="burger-card"
+                data-id="burger-02"
+                data-name="Double Cheese"
+                data-price="899"
+                data-image="https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=1000&q=90">
+
+                <div class="burger-image">
+
+                    <span class="product-badge hot">
+                        EXTRA CHEESY
+                    </span>
+
+                    <button
+                        class="wishlist-btn"
+                        type="button"
+                        aria-label="Add Double Cheese to wishlist">
+
+                        <i class="bx bx-heart"></i>
+
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=1000&q=90"
+                        alt="Double Cheese Burger"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="burger-info">
+
+                    <div class="burger-top">
+
+                        <div>
+
+                            <h3>
+                                Double Cheese
+                            </h3>
+
+                            <p>
+                                Two beef patties, double cheddar,
+                                caramelized onions and sauce.
+                            </p>
+
+                        </div>
+
+                        <div class="price">
+                            Rs. 899
+                        </div>
+
+                    </div>
+
+
+                    <div class="rating">
+
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+
+                        <span>
+                            4.8
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <button
+                            class="add-btn"
+                            type="button">
+
+                            <i class="bx bx-shopping-bag"></i>
+
+                            Add to Cart
+
+                        </button>
+
+                        <button
+                            class="quick-view"
+                            type="button"
+                            aria-label="Quick view">
+
+                            <i class="bx bx-show"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- BURGER 03 -->
+
+            <article class="burger-card"
+                data-id="burger-03"
+                data-name="Crispy Chicken"
+                data-price="749"
+                data-image="https://images.unsplash.com/photo-1615297928064-24977384d0e4?auto=format&fit=crop&w=1000&q=90">
+
+                <div class="burger-image">
+
+                    <span class="product-badge">
+                        CRISPY
+                    </span>
+
+                    <button
+                        class="wishlist-btn"
+                        type="button"
+                        aria-label="Add Crispy Chicken to wishlist">
+
+                        <i class="bx bx-heart"></i>
+
+                    </button>
+
+                    <img
+                        src="./crispy chicken burger.jpg"
+                        alt="Crispy Chicken Burger"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="burger-info">
+
+                    <div class="burger-top">
+
+                        <div>
+
+                            <h3>
+                                Crispy Chicken
+                            </h3>
+
+                            <p>
+                                Golden crispy chicken,
+                                cheese, lettuce and creamy sauce.
+                            </p>
+
+                        </div>
+
+                        <div class="price">
+                            Rs. 749
+                        </div>
+
+                    </div>
+
+
+                    <div class="rating">
+
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+
+                        <span>
+                            4.9
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <button
+                            class="add-btn"
+                            type="button">
+
+                            <i class="bx bx-shopping-bag"></i>
+
+                            Add to Cart
+
+                        </button>
+
+                        <button
+                            class="quick-view"
+                            type="button"
+                            aria-label="Quick view">
+
+                            <i class="bx bx-show"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- BURGER 04 -->
+
+            <article class="burger-card"
+                data-id="burger-04"
+                data-name="BBQ Smash"
+                data-price="799"
+                data-image="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=90">
+
+                <div class="burger-image">
+
+                    <span class="product-badge">
+                        BBQ
+                    </span>
+
+                    <button
+                        class="wishlist-btn"
+                        type="button"
+                        aria-label="Add BBQ Smash to wishlist">
+
+                        <i class="bx bx-heart"></i>
+
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=90"
+                        alt="BBQ Smash Burger"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="burger-info">
+
+                    <div class="burger-top">
+
+                        <div>
+
+                            <h3>
+                                BBQ Smash
+                            </h3>
+
+                            <p>
+                                Smash beef patty, BBQ glaze,
+                                crispy onions and melted cheese.
+                            </p>
+
+                        </div>
+
+                        <div class="price">
+                            Rs. 799
+                        </div>
+
+                    </div>
+
+
+                    <div class="rating">
+
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+
+                        <span>
+                            4.7
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <button
+                            class="add-btn"
+                            type="button">
+
+                            <i class="bx bx-shopping-bag"></i>
+
+                            Add to Cart
+
+                        </button>
+
+                        <button
+                            class="quick-view"
+                            type="button"
+                            aria-label="Quick view">
+
+                            <i class="bx bx-show"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- BURGER 05 -->
+
+            <article class="burger-card"
+                data-id="burger-05"
+                data-name="Spicy Jalapeno"
+                data-price="849"
+                data-image="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=1000&q=90">
+
+                <div class="burger-image">
+
+                    <span class="product-badge hot">
+                        HOT
+                    </span>
+
+                    <button
+                        class="wishlist-btn"
+                        type="button"
+                        aria-label="Add Spicy Jalapeno to wishlist">
+
+                        <i class="bx bx-heart"></i>
+
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=1000&q=90"
+                        alt="Spicy Jalapeno Burger"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="burger-info">
+
+                    <div class="burger-top">
+
+                        <div>
+
+                            <h3>
+                                Spicy Jalapeño
+                            </h3>
+
+                            <p>
+                                Spicy beef patty, jalapeños,
+                                pepper cheese and hot sauce.
+                            </p>
+
+                        </div>
+
+                        <div class="price">
+                            Rs. 849
+                        </div>
+
+                    </div>
+
+
+                    <div class="rating">
+
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+
+                        <span>
+                            4.8
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <button
+                            class="add-btn"
+                            type="button">
+
+                            <i class="bx bx-shopping-bag"></i>
+
+                            Add to Cart
+
+                        </button>
+
+                        <button
+                            class="quick-view"
+                            type="button"
+                            aria-label="Quick view">
+
+                            <i class="bx bx-show"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- BURGER 06 -->
+
+            <article class="burger-card"
+                data-id="burger-06"
+                data-name="Loaded Chicken Burger"
+                data-price="949"
+                data-image="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=1000&q=90">
+
+                <div class="burger-image">
+
+                    <span class="product-badge">
+                        LOADED
+                    </span>
+
+                    <button
+                        class="wishlist-btn"
+                        type="button"
+                        aria-label="Add Loaded Chicken Burger to wishlist">
+
+                        <i class="bx bx-heart"></i>
+
+                    </button>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=1000&q=90"
+                        alt="Loaded Chicken Burger"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="burger-info">
+
+                    <div class="burger-top">
+
+                        <div>
+
+                            <h3>
+                                Loaded Chicken
+                            </h3>
+
+                            <p>
+                                Crispy chicken, cheese,
+                                coleslaw and signature SIZZLE sauce.
+                            </p>
+
+                        </div>
+
+                        <div class="price">
+                            Rs. 949
+                        </div>
+
+                    </div>
+
+
+                    <div class="rating">
+
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+
+                        <span>
+                            5.0
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-actions">
+
+                        <button
+                            class="add-btn"
+                            type="button">
+
+                            <i class="bx bx-shopping-bag"></i>
+
+                            Add to Cart
+
+                        </button>
+
+                        <button
+                            class="quick-view"
+                            type="button"
+                            aria-label="Quick view">
+
+                            <i class="bx bx-show"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= PROMO ================= -->
+
+<section class="promo">
+
+    <div class="container">
+
+        <div class="promo-box">
+
+            <div class="promo-content">
+
+                <div class="eyebrow">
+                    STILL HUNGRY?
+                </div>
+
+                <h2>
+                    Your next bite<br>
+                    is <span>waiting.</span>
+                </h2>
+
+                <p>
+                    Explore the complete SIZZLE menu
+                    and discover fries, wings, pasta,
+                    pizza, desserts and more.
+                </p>
+
+                <a href="./menu.html"
+                    class="primary-btn">
+
+                    Explore Full Menu
+
+                    <i class="bx bx-right-arrow-alt"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <a href="./index.html"
+                class="logo">
+
+                SIZZLE<span>.</span>
+
+            </a>
+
+            <p>
+                Hot, crispy and ridiculously delicious.
+                We make comfort food with a little extra attitude.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                Explore
+            </div>
+
+            <div class="footer-links">
+
+                <a href="./menu.html">
+                    Menu
+                </a>
+
+                <a href="./categories.html">
+                    Categories
+                </a>
+
+                <a href="./deals.html">
+                    Deals
+                </a>
+
+                <a href="./videos.html">
+                    Food Videos
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                Help
+            </div>
+
+            <div class="footer-links">
+
+                <a href="./about.html">
+                    About Us
+                </a>
+
+                <a href="./contact.html">
+                    Contact
+                </a>
+
+                <a href="./faq.html">
+                    FAQs
+                </a>
+
+                <a href="./track-order.html">
+                    Track Order
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                Follow
+            </div>
+
+            <div class="socials">
+
+                <a href="#" aria-label="Instagram">
+                    <i class="bx bxl-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="Facebook">
+                    <i class="bx bxl-facebook"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="bx bxl-tiktok"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 SIZZLE. All rights reserved.
+        </span>
+
+        <span>
+            Hot food. Good mood. 🔥
+        </span>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast" id="toast">
+
+    <i class="bx bx-check-circle"></i>
+
+    <span id="toastText">
+        Added to cart!
+    </span>
+
+</div>
+
+
+
+<script>
+
+    /* ================= STORAGE ================= */
+
+    function getCart() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem("sizzleCart")
+            ) || [];
+
+        } catch(error) {
+
+            return [];
+
+        }
+
+    }
+
+
+    function saveCart(cart) {
+
+        localStorage.setItem(
+            "sizzleCart",
+            JSON.stringify(cart)
+        );
+
+    }
+
+
+    function getWishlist() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem("sizzleWishlist")
+            ) || [];
+
+        } catch(error) {
+
+            return [];
+
+        }
+
+    }
+
+
+    function saveWishlist(list) {
+
+        localStorage.setItem(
+            "sizzleWishlist",
+            JSON.stringify(list)
+        );
+
+    }
+
+
+    /* ================= COUNTS ================= */
+
+    function updateCounts() {
+
+        const cart = getCart();
+        const wishlist = getWishlist();
+
+        const cartCount = cart.reduce(
+            (total,item) =>
+                total + Number(item.quantity || 1),
+            0
+        );
+
+        document.getElementById("cartCount")
+            .textContent = cartCount;
+
+        document.getElementById("wishlistCount")
+            .textContent = wishlist.length;
+
+    }
+
+
+    /* ================= TOAST ================= */
+
+    let toastTimer;
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+        const toastText =
+            document.getElementById("toastText");
+
+        toastText.textContent = message;
+
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 2200);
+
+    }
+
+
+    /* ================= ADD TO CART ================= */
+
+    document
+        .querySelectorAll(".burger-card")
+        .forEach(card => {
+
+            const addBtn =
+                card.querySelector(".add-btn");
+
+            addBtn.addEventListener("click", function() {
+
+                const id =
+                    card.dataset.id;
+
+                const name =
+                    card.dataset.name;
+
+                const price =
+                    Number(card.dataset.price);
+
+                const image =
+                    card.dataset.image;
+
+                let cart =
+                    getCart();
+
+                const existing =
+                    cart.find(item =>
+                        String(item.id) === String(id)
+                    );
+
+
+                if(existing) {
+
+                    existing.quantity =
+                        Number(existing.quantity || 1) + 1;
+
+                } else {
+
+                    cart.push({
+
+                        id: id,
+
+                        name: name,
+
+                        price: price,
+
+                        image: image,
+
+                        quantity: 1
+
+                    });
+
+                }
+
+
+                saveCart(cart);
+
+                updateCounts();
+
+                showToast(
+                    name + " added to cart!"
+                );
+
+
+                addBtn.innerHTML =
+                    '<i class="bx bx-check"></i> Added!';
+
+
+                setTimeout(() => {
+
+                    addBtn.innerHTML =
+                        '<i class="bx bx-shopping-bag"></i> Add to Cart';
+
+                }, 1200);
+
+            });
+
+        });
+
+
+    /* ================= WISHLIST ================= */
+
+    function syncWishlistButtons() {
+
+        const wishlist =
+            getWishlist();
+
+        document
+            .querySelectorAll(".burger-card")
+            .forEach(card => {
+
+                const id =
+                    card.dataset.id;
+
+                const button =
+                    card.querySelector(".wishlist-btn");
+
+                const icon =
+                    button.querySelector("i");
+
+                const exists =
+                    wishlist.some(item =>
+                        String(item.id) === String(id)
+                    );
+
+
+                if(exists) {
+
+                    button.classList.add("active");
+
+                    icon.classList.remove("bx-heart");
+                    icon.classList.add("bxs-heart");
+
+                } else {
+
+                    button.classList.remove("active");
+
+                    icon.classList.remove("bxs-heart");
+                    icon.classList.add("bx-heart");
+
+                }
+
+            });
+
+    }
+
+
+    document
+        .querySelectorAll(".wishlist-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", function(e) {
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                const card =
+                    button.closest(".burger-card");
+
+                const id =
+                    card.dataset.id;
+
+                const name =
+                    card.dataset.name;
+
+                const price =
+                    Number(card.dataset.price);
+
+                const image =
+                    card.dataset.image;
+
+                let wishlist =
+                    getWishlist();
+
+                const existingIndex =
+                    wishlist.findIndex(item =>
+                        String(item.id) === String(id)
+                    );
+
+
+                if(existingIndex !== -1) {
+
+                    wishlist.splice(
+                        existingIndex,
+                        1
+                    );
+
+                    showToast(
+                        name + " removed from wishlist"
+                    );
+
+                } else {
+
+                    wishlist.push({
+
+                        id: id,
+
+                        name: name,
+
+                        price: price,
+
+                        image: image
+
+                    });
+
+                    showToast(
+                        name + " added to wishlist!"
+                    );
+
+                }
+
+
+                saveWishlist(wishlist);
+
+                syncWishlistButtons();
+
+                updateCounts();
+
+            });
+
+        });
+
+
+    /* ================= QUICK VIEW ================= */
+
+    document
+        .querySelectorAll(".quick-view")
+        .forEach(button => {
+
+            button.addEventListener("click", function() {
+
+                const card =
+                    button.closest(".burger-card");
+
+                const name =
+                    card.dataset.name;
+
+                showToast(
+                    "Quick view: " + name
+                );
+
+            });
+
+        });
+
+
+    /* ================= MOBILE MENU ================= */
+
+    const menuBtn =
+        document.getElementById("menuBtn");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+
+    function toggleMenu() {
+
+        navLinks.classList.toggle("show");
+
+        menuBtn.classList.toggle("bx-menu");
+        menuBtn.classList.toggle("bx-x");
+
+    }
+
+
+    menuBtn.addEventListener(
+        "click",
+        function(e) {
+
+            e.stopPropagation();
+
+            toggleMenu();
+
+        }
+    );
+
+
+    menuBtn.addEventListener(
+        "keydown",
+        function(e) {
+
+            if(
+                e.key === "Enter" ||
+                e.key === " "
+            ) {
+
+                e.preventDefault();
+
+                toggleMenu();
+
+            }
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(".nav-links a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                function() {
+
+                    navLinks.classList.remove("show");
+
+                    menuBtn.classList.remove("bx-x");
+                    menuBtn.classList.add("bx-menu");
+
+                }
+            );
+
+        });
+
+
+    document.addEventListener(
+        "click",
+        function(e) {
+
+            if(
+                window.innerWidth <= 800 &&
+                !navLinks.contains(e.target) &&
+                !menuBtn.contains(e.target)
+            ) {
+
+                navLinks.classList.remove("show");
+
+                menuBtn.classList.remove("bx-x");
+                menuBtn.classList.add("bx-menu");
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function(e) {
+
+            if(e.key === "Escape") {
+
+                navLinks.classList.remove("show");
+
+                menuBtn.classList.remove("bx-x");
+                menuBtn.classList.add("bx-menu");
+
+            }
+
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        function() {
+
+            if(window.innerWidth > 800) {
+
+                navLinks.classList.remove("show");
+
+                menuBtn.classList.remove("bx-x");
+                menuBtn.classList.add("bx-menu");
+
+            }
+
+        }
+    );
+
+
+    /* ================= SCROLL REVEAL ================= */
+
+    const cards =
+        document.querySelectorAll(
+            ".burger-card"
+        );
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if(entry.isIntersecting) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform =
+                            "translateY(0)";
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: .12
+            }
+        );
+
+
+    cards.forEach((card,index) => {
+
+        card.style.opacity = "0";
+        card.style.transform =
+            "translateY(30px)";
+
+        card.style.transition =
+            `opacity .7s ease ${index * .06}s,
+             transform .7s cubic-bezier(.2,.8,.2,1) ${index * .06}s,
+             border-color .4s ease,
+             box-shadow .4s ease`;
+
+        observer.observe(card);
+
+    });
+
+
+    /* ================= STORAGE SYNC ================= */
+
+    window.addEventListener(
+        "storage",
+        function(e) {
+
+            if(
+                e.key === "sizzleCart" ||
+                e.key === "sizzleWishlist"
+            ) {
+
+                updateCounts();
+
+                syncWishlistButtons();
+
+            }
+
+        }
+    );
+
+
+    /* ================= INITIALIZE ================= */
+
+    updateCounts();
+
+    syncWishlistButtons();
+
+</script>
+
+
+</body>
+
+</html>
